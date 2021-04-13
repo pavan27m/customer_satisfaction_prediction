@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Customer Satisfaction Prediction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <style>
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background-color:rgb(182, 148, 196); /* Green */
+    color: black;
+    text-align: left;
+
+  }
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+    color: #1abc9c !important;
+  }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default bg-4">
+  <div class="container">
+    <div class="navbar-header">
+      
+      <h2>Customer Satisfaction Prediction</h2>
+    </div>
+    
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><p>This intelligent system can able to predicts customer satisfaction based on how customer order</p></div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+  <form action="{{ url_for('predict')}}"method="post">
+
+    <div class="form-group">
+      <label for="price">Price of the producut</label>
+      <input type="number" class="form-control" name="price" id="price" placeholder="Price value must be in number" required="required">
+    </div>
+
+    <div class="form-group">
+        <label for="ss">Seller state</label>
+        <select name="ss" id="ss">
+            <option value = "" >Select seller state</option>
+            <option value = "SP">SP</option>
+            <option value = "RJ">RJ</option>
+            <option value = "MG">MG</option>
+            <option value = "PR">PR</option>
+            <option value = "SC">SC</option>
+            <option value = "PB">PB</option>
+            <option value = "MS">MS</option>
+            <option value = "ES">ES</option>
+            <option value = "RS">RS</option>
+            <option value = "DF">DF</option>
+            <option value = "RN">RN</option>
+            <option value = "GO">GO</option>
+            <option value = "BA">BA</option>
+            <option value = "CE">CE</option>
+            <option value = "MT">MT</option>
+            <option value = "MA">MA</option>
+            <option value = "PE">PE</option>
+            <option value = "SE">SE</option>
+            <option value = "RO">RO</option>
+            <option value = "PI">PI</option>
+            <option value = "PA">PA</option>
+            <option value = "AM">AM</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="payment">Payment Type</label>
+        <select name="payment" id="payment">
+            <option value = "" >Select Payment Type</option>
+            <option value = "credit_card">Credit Card</option>
+            <option value = "voucher">Voucher</option>
+            <option value = "boleto">Boleto</option>
+            <option value = "debit_card">Debit Card</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="payment_value">Payment Value</label>
+        <input type="number" class="form-control"  name="payvalue" id="payvalue" placeholder="Money paid to the order" required="required">
+      </div>
+
+    <div class="form-group">
+        <label for="cs">Customer state</label>
+        <select name="cs" id="cs">
+            <option value = "" >Select Customer State</option>
+            <option value = "SP">SP</option>
+            <option value = "RJ">RJ</option>
+            <option value = "MG">MG</option>
+            <option value = "PR">PR</option>
+            <option value = "SC">SC</option>
+            <option value = "PB">PB</option>
+            <option value = "MS">MS</option>
+            <option value = "ES">ES</option>
+            <option value = "RS">RS</option>
+            <option value = "DF">DF</option>
+            <option value = "RN">RN</option>
+            <option value = "GO">GO</option>
+            <option value = "BA">BA</option>
+            <option value = "CE">CE</option>
+            <option value = "MT">MT</option>
+            <option value = "MA">MA</option>
+            <option value = "PE">PE</option>
+            <option value = "SE">SE</option>
+            <option value = "RO">RO</option>
+            <option value = "PI">PI</option>
+            <option value = "PA">PA</option>
+            <option value = "AM">AM</option>
+            <option value = "AL">AL</option>
+            <option value = "AP">AP</option>
+            <option value = "RR">RR</option>
+            <option value = "TO">TO</option>
+            <option value = "AC">AC</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label for="photos">Number of Photos Diplayed</label>
+      <input type="number" class="form-control" name="photos" id="photos" placeholder="Enter the number of photos displayed (less than 20)" required="required">
+    </div>
+    
+    <div class="form-group">
+        <label for="pcn">Product Category</label>
+        <select name="pcn" id="pcn">
+            <option value = "" >Select Product Category</option>
+            <option value = "housewares">housewares</option>
+            <option value = "baby">baby</option>
+            <option value = "cool_stuff">cool_stuff</option>
+            <option value = "sports_leisure">sports_leisure</option>
+            <option value = "toys">toys</option>
+            <option value = "perfumery">perfumery</option>
+            <option value = "health_beauty">health_beauty</option>
+            <option value = "music">music</option>
+            <option value = "pet_shop">pet_shop</option>
+            <option value = "auto">auto</option>
+            <option value = "watches_gifts">watches_gifts</option>
+            <option value = "computers_accessories">computers_accessories</option>
+            <option value = "electronics">electronics</option>
+            <option value = "audio">audio</option>
+            <option value = "telephony">telephony</option>
+            <option value = "consoles_games">consoles_games</option>
+            <option value = "stationery">stationery</option>
+            <option value = "signaling_and_security">signaling_and_security</option>
+            <option value = "bed_bath_table">bed_bath_table</option>
+            <option value = "party_supplies">party_supplies</option>
+            <option value = "fashion_male_clothing">fashion_male_clothing</option>
+            <option value = "fashio_female_clothing">fashio_female_clothing</option>
+            <option value = "food">food</option>
+            <option value = "costruction_tools_tools">costruction_tools_tools</option>
+            <option value = "fashion_bags_accessories">fashion_bags_accessories</option>
+            <option value = "garden_tools">garden_tools</option>
+            <option value = "furniture_decor">furniture_decor</option>
+            <option value = "office_furniture">office_furniture</option>
+            <option value = "furniture_living_room">furniture_living_room</option>
+            <option value = "industry_commerce_and_business">industry_commerce_and_business</option>
+            <option value = "construction_tools_construction">construction_tools_construction</option>
+            <option value = "market_place">market_place</option>
+            <option value = "home_confort">home_confort</option>
+            <option value = "art">art</option>
+            <option value = "home_construction">home_construction</option>
+            <option value = "small_appliances">small_appliances</option>
+            <option value = "costruction_tools_garden">costruction_tools_garden</option>
+            <option value = "furniture_bedroom">furniture_bedroom</option>
+            <option value = "fixed_telephony">fixed_telephony</option>
+            <option value = "musical_instruments">TO</option>
+            <option value = "air_conditioning">air_conditioning</option>
+            <option value = "luggage_accessories">luggage_accessories</option>
+            <option value = "fashion_sport">fashion_sport</option>
+            <option value = "home_appliances">home_appliances</option>
+            <option value = "small_appliances_home_oven_and_coffee">small_appliances_home_oven_and_coffee</option>
+            <option value = "construction_tools_lights">construction_tools_lights</option>
+            <option value = "books_technical">books_technical</option>
+            <option value = "kitchen_dining_laundry_garden_furniture">kitchen_dining_laundry_garden_furniture</option>
+            <option value = "agro_industry_and_commerce">agro_industry_and_commerce</option>
+            <option value = "food_drink">food_drink</option>
+            <option value = "fashion_shoes">fashion_shoes</option>
+            <option value = "drinks">drinks</option>
+            <option value = "books_general_interest">books_general_interest</option>
+            <option value = "home_appliances_2">home_appliances_2</option>
+            <option value = "construction_tools_safety">construction_tools_safety</option>
+            <option value = "christmas_supplies">christmas_supplies</option>
+            <option value = "furniture_mattress_and_upholstery">furniture_mattress_and_upholstery</option>
+            <option value = "home_comfort_2">home_comfort_2</option>
+            <option value = "fashion_underwear_beach">fashion_underwear_beach</option>
+            <option value = "arts_and_craftmanship">arts_and_craftmanship</option>
+            <option value = "fashion_childrens_clothes">fashion_childrens_clothes</option>
+            <option value = "dvds_blu_ray">dvds_blu_ray</option>
+            <option value = "flowers">flowers</option>
+            <option value = "cds_dvds_musicals">cds_dvds_musicals</option>
+            <option value = "security_and_services">security_and_services</option>
+            <option value = "computers">computers</option>
+            <option value = "tablets_printing_image">tablets_printing_image</option>
+            <option value = "cine_photo">cine_photo</option>
+            <option value = "la_cuisine">la_cuisine</option>
+            <option value = "other">other</option>
+            <option value = "diapers_and_hygiene">diapers_and_hygiene</option>
+            <option value = "books_imported">books_imported</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label for="dd">Delievered in how may days</label>
+      <input type="number" class="form-control" name="dd" id="dd" placeholder="Enter the number " required="required">
+    </div>
+
+    <div class="form-group">
+      <label for="ed">Estimated days suggest by website</label>
+      <input type="number" class="form-control" name="ed" id="ed" placeholder="Enter the number " required="required">
+    </div>
+
+    <div class="form-group">
+      <label for="y">Existing customer or not</label>
+      <select name = "y", i= "y">
+            <option value = "yes">Yes</option>
+            <option value = "no">No</option>
+      </select>
+    </div>
+
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    <button type="submit" class="btn btn-primary btn-block btn-large">Predict Sales</button>
+
+  </form>
+
+  {{ prediction_text }}
+
+</div>
+
+<div class="col-md-4"></div>
+</div>
+</div>
+
+
+
+
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <p>Thanks to <a href="https://www.boardinfinity.com">BoardInfinity</a></p>
+  <p class='footer-description'>Made with ❤️ by Pavan Naga Sai Kumar</p>
+  <div class="contact" >
+    <a target="_blank" href="https://github.com/pavan27m?tab=repositories"><i class="fab fa-github fa-lg contact-icon" style="color:blanchedalmond !important"></i></a>
+    <a target="_blank" href="https://www.linkedin.com/in/pavan-naga-sai-kumar-nedunuri/"><i class="fab fa-linkedin fa-lg contact-icon" style="color:blanchedalmond !important"></i></a>
+</div>
+   
+  
+</footer>
+
+</body>
+</html>
